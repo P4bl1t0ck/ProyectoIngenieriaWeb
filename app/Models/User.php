@@ -29,4 +29,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // Relación: Un usuario puede tener múltiples tareas
+    public function tasks()
+    {
+        return $this->hasMany(HomeTask::class);
+    }
 }

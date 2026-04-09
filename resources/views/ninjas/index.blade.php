@@ -6,10 +6,24 @@
 </head>
 <body>
     <h2>Currentl Available Ninjas</h2>
+    <p>{{$Greeting}}</p>
     <ul>
-        <li>Ninja 1</li>
-        <li>Ninja 2</li>
-        <li>Ninja 3</li>
+        <li>
+            <a href = "">
+                {{ $ninjas[0]["name"] }}
+            </a>
+        </li>
+        <li>
+            <a href = "">
+                {{ $ninjas[1]["name"] }}
+            </a>
+        </li>
+        <li>
+            <a href = "">
+                {{ $ninjas[2]["name"] }}
+            </a>
+        </li>
+
     </ul>
 </body>
 </html>
