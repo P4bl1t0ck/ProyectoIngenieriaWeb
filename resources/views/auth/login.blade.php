@@ -2,59 +2,27 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Iniciar Sesión</title>
 </head>
 <body>
-
-    <h1>Login</h1>
+    <h1>Iniciar Sesión</h1>
 
     @if ($errors->any())
-        <div>
-            <strong>Error:</strong> Las credenciales no son válidas.
-        </div>
+        <p style="color: red;">Las credenciales no son válidas</p>
     @endif
 
     <form action="{{ route('login.store') }}" method="POST">
         @csrf
 
-        <div>
-            <label for="email">Correo Electrónico</label><br>
-            <input 
-                type="email" 
-                id="email" 
-                name="email" 
-                value="{{ old('email') }}"
-                required
-            >
-            @error('email')
-                <div>{{ $message }}</div>
-            @enderror
-        </div>
+        <label>Email:</label><br>
+        <input type="email" name="email" value="{{ old('email') }}" required><br><br>
 
-        <br>
-
-        <div>
-            <label for="password">Contraseña</label><br>
-            <input 
-                type="password" 
-                id="password" 
-                name="password" 
-                required
-            >
-            @error('password')
-                <div>{{ $message }}</div>
-            @enderror
-        </div>
-
-        <br>
+        <label>Contraseña:</label><br>
+        <input type="password" name="password" required><br><br>
 
         <button type="submit">Iniciar Sesión</button>
     </form>
 
-    <p>
-        ¿No tienes cuenta?
-        <a href="{{ route('register') }}">Regístrate</a>
-    </p>
-
+    <p><a href="{{ route('register') }}">¿No tienes cuenta? Regístrate</a></p>
 </body>
 </html>
