@@ -2,28 +2,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nija Network | Home</title>
+    <title>Ninja Network | Home |</title>
 </head>
 <body>
     <h2>Currentl Available Ninjas</h2>
-    <p>{{$Greeting}}</p>
+
+    <p>{{ $greeting }}</p>
     <ul>
         <li>
-            <a href = "">
+            <!--This should have to be the dinamic raw path for ninjas.-->
+            <a href="/ninjas/{{$ninjas[0]["id"] }}">
+                <!--This is a way of how to make that the route calls the id from the web.php-->
                 {{ $ninjas[0]["name"] }}
             </a>
         </li>
         <li>
-            <a href = "">
+            <a href="/ninjas/{{$ninjas[1]["id"] }}">
                 {{ $ninjas[1]["name"] }}
             </a>
         </li>
-        <li>
-            <a href = "">
-                {{ $ninjas[2]["name"] }}
-            </a>
-        </li>
-
     </ul>
 </body>
 </html>

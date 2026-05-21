@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Gestor de Tareas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Network</title>
 </head>
 <body>
-    <h1>Gestor de Tareas del Hogar</h1>
-    <p>Aplicación simple para organizar tus tareas</p>
+    <h1>Welcome TO ninja.com</h1>
+    <p>Click the button below to view the list of ninjas.</p>
 
-    <ul>
-        <li><a href="{{ route('login') }}">Iniciar Sesión</a></li>
-        <li><a href="{{ route('register') }}">Crear Cuenta</a></li>
-    </ul>
+    <a href="/ninjas" class="btn">
+        Find Ninjas!
+    </a>
 </body>
 </html>
