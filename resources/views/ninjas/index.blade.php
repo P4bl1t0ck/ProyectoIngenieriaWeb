@@ -7,20 +7,20 @@
 <body>
     <h2>Currentl Available Ninjas</h2>
 
-    <p>{{ $greeting }}</p>
+    @if ($gretting == "hello")
+        <p>Hi asshole</p>
+    @endif
     <ul>
-        <li>
-            <!--This should have to be the dinamic raw path for ninjas.-->
-            <a href="/ninjas/{{$ninjas[0]["id"] }}">
-                <!--This is a way of how to make that the route calls the id from the web.php-->
-                {{ $ninjas[0]["name"] }}
-            </a>
-        </li>
-        <li>
-            <a href="/ninjas/{{$ninjas[1]["id"] }}">
-                {{ $ninjas[1]["name"] }}
-            </a>
-        </li>
+        <!--This a blade directory, that permit us to make a dinamic 
+        views, or render al ninja routh paths-->
+        @foreach($ninjas as $ninja)
+            <li>
+                <p>
+                    {{ $ninja['name'] }}
+                    <a href="/ninjas/{{ $ninja['id'] }}">View Details</a>
+                </p>
+            </li>
+        @endforeach
     </ul>
 </body>
 </html>
