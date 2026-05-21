@@ -1,15 +1,8 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ninja Network | Home |</title>
-</head>
-<body>
-    <h2>Currentl Available Ninjas</h2>
-
-    @if ($gretting == "hello")
-        <p>Hi asshole</p>
-    @endif
+<x-layout> 
+    <!--This is crazy, you can actually delete a lot of code, and call
+    an view from the component folder, and we can used a custom component
+    of any type we wanted. -->
+    <h2>Currently Available Ninjas</h2>
     <ul>
         <!--This a blade directory, that permit us to make a dinamic 
         views, or render al ninja routh paths-->
@@ -22,5 +15,4 @@
             </li>
         @endforeach
     </ul>
-</body>
-</html>
+</x-layout>

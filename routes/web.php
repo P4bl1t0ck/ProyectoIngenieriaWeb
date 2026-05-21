@@ -17,6 +17,10 @@ Route::get('/ninjas', function(){
 });
 
 
+Route::get('/ninjas/create', function (){
+    return view('ninjas.create');
+});
+
 //Round parameters
 Route::get('/ninjas/{id}', function($id){
     //Fetch record with id
