@@ -8,9 +8,15 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/ninjas', function(){
+    //This is a hardcore for some values inside the web.php
+    /*Its an example, its only an array of arrays that its gonna work
+    as a 'dataset'*/
     $ninjas = [
         ["name" => "mario","skill"=>75,"id" => "1"],
         ["name" => "luigi","skill" =>45, "id"=>"2"],
+        ["name" => "Wario","skill" =>89, "id"=>"3"],
+        ["name" => "Waluigi","skill" =>490, "id"=>"4"],
+
     ];
 
     return view('ninjas.index', ["greeting" => "hello","ninjas"=> $ninjas]);

@@ -8,11 +8,11 @@
         views, or render al ninja routh paths-->
         @foreach($ninjas as $ninja)
             <li>
-                <p>
-                    {{ $ninja['name'] }}
-                    <a href="/ninjas/{{ $ninja['id'] }}">View Details</a>
-                </p>
+                <x-card href="/ninjas/{{ $ninja['id'] }}" :highligth="$ninja['skill'] > 70">
+                     <h3>{{$ninja['name']}}</h3>
+                </x-card>
             </li>
         @endforeach
+
     </ul>
 </x-layout>
