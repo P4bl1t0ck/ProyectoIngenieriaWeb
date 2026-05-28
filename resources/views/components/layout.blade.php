@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ninja Network</title>
     @vite('resources/css/app.css')
+    <!--Esta es la forma en como se carga los recursos o paquetes de app.css-->
 </head>
 <body>
     <header>
