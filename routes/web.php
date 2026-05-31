@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 // Rutas públicas
 Route::get('/', function () {
     return view('welcome');
-})->name('home');
+});
 
 Route::get('/ninjas', function(){
     //This is a hardcore for some values inside the web.php

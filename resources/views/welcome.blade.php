@@ -11,7 +11,12 @@
 <body>
     <h1>Welcome TO ninja.com</h1>
     <p>Click the button below to view the list of ninjas.</p>
-
+    <x-card>
+        <h2 class="h1">
+            x card
+        </h2>
+    </x-card>
+        
     <a href="/ninjas" class="btn">
         Find Ninjas!
     </a>
