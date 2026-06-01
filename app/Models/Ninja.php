@@ -14,7 +14,7 @@ class Ninja extends Model
     protected $fillable = [
         'name',
         'skill',
-        'bio']; //Is admin
+        'bio']; //Is "admin" 
     //Array of column names
     
     /** @use HasFactory<\Database\Factories\NinjaFactory> */

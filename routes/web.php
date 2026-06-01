@@ -11,13 +11,7 @@ Route::get('/', function () {
 Route::get('/ninjas', [ NinjaController::class, 'index']);
 
 
-Route::get('/ninjas/create', function (){
-    return view('ninjas.create');
-});
+Route::get('/ninjas/create', [NinjaController::class, 'create']);
 
 //Round parameters
-Route::get('/ninjas/{id}', function($id){
-    //Fetch record with id
-    //Es una forma para hacer redirects dinamicos
-    return view('ninjas.show', ["id"=>$id]);
-});
+Route::get('/ninjas/{id}', [NinjaController::class, 'show']);

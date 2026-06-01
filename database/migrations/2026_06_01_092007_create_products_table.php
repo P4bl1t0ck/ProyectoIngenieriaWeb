@@ -13,17 +13,17 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table ->string('id');
-            $table -> string('nombre');
-            $table -> string('descripcion');
-            $table -> integer()
+    
 
-            'id' => fake() -> numberBetween(1,1000),
-            'nombre' =>fake()->name(), 
-            'descripcion' => fake()->realText(500),
-            'precio' => fake()->numberBetween(0,100), 
-            'stock' => fake()->numberBetween(0,40)
+            $table -> string('nombre');
+            //$table -> string('descripcion'); 
+            //A really short attribute for a description
+            $table -> text('descripcion');
+            $table -> float('precio');
+            $table -> integer('stock');            
+
+            $table->timestamps();
+            //Good programming practices, for see when, who and what made the product
         });
     }
 
