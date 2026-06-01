@@ -1,5 +1,5 @@
 @props(['highligth' => false])
-
+@vite('resources/css/app.css')
 <div @class(['highligth' => $highligth,'card'])>  
     {{ $slot }}
     <!--Aqui conectamos a los atributos que pasamos de el index a la atrejta-->
