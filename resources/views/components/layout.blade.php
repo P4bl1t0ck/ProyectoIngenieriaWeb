@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ninja Network</title>
-    @vite('resources/css/app.css')
+    @vite('resources\css\app.css')
     <!--Esta es la forma en como se carga los recursos o paquetes de app.css-->
 </head>
 <!--This is a kinda of template that can help us to make some agile code for our aplications

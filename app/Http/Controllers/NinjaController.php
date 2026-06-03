@@ -13,12 +13,18 @@ class NinjaController extends Controller
     desing for */ 
     public function index(){
         //route --> /ninjas/
-        $ninjas = Ninja::orderBy('created_at', 'desc')->paginate(10);
+        //$ninjas = Ninja::orderBy('created_at', 'desc')->paginate(10);
+        //Con with, nosotros hacemos un fetch a Dojo y la incluimos al momento de hacer el llamos dengtro del orderBy
+        //Esto es llamado Eagleload, donde se hace ya la consulta de una vez desde el controlador
+        $ninjas = Ninja::with('dojo')->orderBy('created_at', 'desc')->paginate(10);
+
         return view('ninjas.index', ["ninjas" => $ninjas]);
     }   
     public function show($id){
         //route --> /ninjas/{$id}
-        $ninja = Ninja::findOrFail($id);
+        //$ninja = Ninja::findOrFail($id);
+        $ninja = Ninja::with('dojo')-> findOrFail($id);
+        
         return view('ninjas.show', ["ninja"=>$ninja]);
     }   
     public function create(){

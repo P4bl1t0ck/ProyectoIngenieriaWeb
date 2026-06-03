@@ -4,7 +4,6 @@
     por el id, por lo que ya no  tenemos el id hardcodeado, la plantilla ya no
     accede dentro de los valores, por lo que le pasamos la clase dentro de el 
     controlador de rutas en weh.php, debemos de llamar al objeto que hace este referencia -->
-
     <h2 class="titulo">{{$ninja -> name }}</h2>
 
     <!--Ahora dentro de la vista de show, vamos a copiar una un plantilla
@@ -20,4 +19,12 @@
 
     <!--La forma de <p><strong> en el html semantico, es como 
         un tipo de texto, subtitulo y descripcion en la vista.-->
+
+    <div class="border-2 border-dashed bg-white px-4 pb-4 my-4 rounded">
+    <h3>Dojo Information</h3>
+    <p><strong>Dojo name:</strong> {{ $ninja->dojo->name }}</p>
+    <p><strong>Location:</strong> {{ $ninja->dojo->location }}</p>
+    <p><strong>About the Dojo:</strong></p>
+    <p>{{ $ninja->dojo->description }}</p>
+  </div>
 </x-layout>
