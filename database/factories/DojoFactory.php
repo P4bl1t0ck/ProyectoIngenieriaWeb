@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\categories;
+use App\Models\Dojo;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<categories>
+ * @extends Factory<Dojo>
  */
-class CategoriesFactory extends Factory
+class DojoFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,9 +18,9 @@ class CategoriesFactory extends Factory
     public function definition(): array
     {
         return [
-            //Im gonna leave just with this attributtes
-            'nombre'=>fake()->company(),
-            'descripcion'=>fake()->realText(500),
+            'name'=> fake()->company(),
+            'location' => fake()->city(),
+            'description' => fake()->paragraph(10)
         ];
     }
 }

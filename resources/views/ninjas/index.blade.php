@@ -13,4 +13,7 @@
                 </x-card>
             </li>
         @endforeach
+    </ul>
+    {{ $ninjas->links()}}
+
 </x-layout>
