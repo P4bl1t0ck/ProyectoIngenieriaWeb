@@ -16,8 +16,8 @@ del proyecto, y podemos crear distintas vistas segun lo que nesecitemos.-->
         <nav>
             <!--THIs is just a hook up to the routes made for Ninjas practice, we can Change ´em
             for anotther type of routes, but just in case i will check the video first, before damaged stm-->
-            <h1>Ninja Network</h1>
-            <a href="/ninjas">All Ninjas</a>
+            <strong>Ninja Network</strong> <br>
+            <a href="/ninjas">All Ninjas</a> <br>
             <a href="/ninjas/create">Create New Ninja</a>
         </nav>
     </header>
