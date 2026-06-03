@@ -19,4 +19,9 @@ class categories extends Model
         automatically increase and plus by the time. */
     use HasFactory;
 
+    public function product(){
+        //Y definimos bien la copnexion de la categiriua de muchos a la tabla de Product
+        return $this->hasMany(Product::class);
+    }
+
 }

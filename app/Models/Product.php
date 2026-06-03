@@ -16,4 +16,9 @@ class Product extends Model
         ];
 
     use HasFactory;
+
+    public function categorie(){
+        return $this -> belongsTo(categories::class);
+        //Conexion de Producto con categories
+    }
 }

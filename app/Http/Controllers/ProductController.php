@@ -15,7 +15,8 @@ class ProductController extends Controller
         I learned my fucking lesson, dont do again lonely nights*/
         //$Product = ProductController::orderBy('created_at','desc')->get();
         //  I get confused about how to conecte the Product ORM with the method
-        $Product = Product::orderBy('created_at','desc') -> get();
+        //$Product = Product::orderBy('created_at','desc') -> get();
+        $Product = Product::with('categorie')->orderBy('created_at','desc') -> get();
 
         return view('Products.index', ["Products"=>$Product]);
         //The true conection
@@ -24,7 +25,8 @@ class ProductController extends Controller
     public function show($id){
         //route --> /ninjas/{$id}
         //fetch a single record & pass into show view
-        $Product = Product::findOrFail($id);
+        //$Product = Product::findOrFail($id);
+        $Product = Product::with('categories')->findOrFail($id);
         /*I finally see it, im using OOP on the product-model=table, from here and i send it to the view */
         return view('Products.show', ['Product'=>$Product]);
     }   
