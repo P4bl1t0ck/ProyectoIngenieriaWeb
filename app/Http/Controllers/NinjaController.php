@@ -27,4 +27,18 @@ class NinjaController extends Controller
         //render a create view (with web form) to users
         return view('ninjas.create');
     }   
+    //The rest of the CRUD functions for our controller class for ninjas, i noticed, that 
+    //maybe we are going to se more of thse functios more forward on the course, but until that it will rest here
+    public function store() {
+      // --> /ninjas/ (POST)
+      // hanlde POST request to store a new ninja record in table
+    }
+
+    public function destroy($id) {
+      // --> /ninjas/{id} (DELETE)
+      // handle delete request to delete a ninja record from table
+    }
+
+    // edit() and update() for edit view and update requests
+    // we won't be using these routes
 }

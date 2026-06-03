@@ -13,6 +13,4 @@
                 </x-card>
             </li>
         @endforeach
-
-    </ul>
 </x-layout>

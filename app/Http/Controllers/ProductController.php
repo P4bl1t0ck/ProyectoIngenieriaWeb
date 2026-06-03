@@ -7,6 +7,7 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
+    /*I have also to endo thhe CRUD on here but today, */
     public function index(){
         //route --> /ninjas/
         /*Now i will try to make my own fucntions for index
@@ -30,6 +31,8 @@ class ProductController extends Controller
     public function create(){
         //rout --> /ninjas/create
         //render a create view (with web form) to users
-        return view('Products.create');
+        /*Who said that it will work */
+        $Products = \App\Models\Product::all();
+        return view('Products.create', compact('Products'));
     }   
 }

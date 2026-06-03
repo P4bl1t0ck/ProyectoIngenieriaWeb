@@ -8,6 +8,7 @@ use App\Models\categories;
 class CategoriesController extends Controller
 {
     /*Now we do the same? i guess */
+    /*I have to complete the CRUD on this controller */
      public function index(){
         //route --> /ninjas/
         $ninjas = Ninja::orderBy('created_at', 'desc')->get();
