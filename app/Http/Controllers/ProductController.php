@@ -7,34 +7,69 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    /*I have also to endo thhe CRUD on here but today, */
+    /*These are the functions for Rutes and view guides, also as a REad method*/
     public function index(){
-        //route --> /ninjas/
-        /*Now i will try to make my own fucntions for index
-        Fuck my view is kinda blury, and sometimes foggy
-        I learned my fucking lesson, dont do again lonely nights*/
-        //$Product = ProductController::orderBy('created_at','desc')->get();
-        //  I get confused about how to conecte the Product ORM with the method
-        //$Product = Product::orderBy('created_at','desc') -> get();
-        $Product = Product::with('categorie')->orderBy('created_at','desc') -> get();
-
+        //Ruta --> /Products/
+        /*El index es como el todo el catolgoo de todos los profudctos dispobibles dentro
+        es como un showAll en java */
+        $Product = Product::with('categorie')->orderBy('created_at','desc') -> paginate(10);
+        //De toda la clase de Productos, con respecto a categorie, ordenar segun creacion, descendiente y en paginacion de 10
         return view('Products.index', ["Products"=>$Product]);
-        //The true conection
-        //I hope it works
+        //Retornar la vista, productss.index, donde Products, tomara el valor de $Product
     }   
-    public function show($id){
-        //route --> /ninjas/{$id}
-        //fetch a single record & pass into show view
-        //$Product = Product::findOrFail($id);
-        $Product = Product::with('categories')->findOrFail($id);
-        /*I finally see it, im using OOP on the product-model=table, from here and i send it to the view */
+    public function show(Product $Product){
+        //Ruta --> /Products/{id}
+        //$Product = Product::with('categories')->findOrFail($id);
+        $Product->load('categorie');
+        //De productos, cargar las categorias
         return view('Products.show', ['Product'=>$Product]);
     }   
     public function create(){
-        //rout --> /ninjas/create
+        //rout --> /Products/create
         //render a create view (with web form) to users
         /*Who said that it will work */
-        $Products = \App\Models\Product::all();
-        return view('Products.create', compact('Products'));
+        $categories = \App\Models\categories::all();
+        //Geny correcion
+        return view('Products.create', compact('categories'));
     }   
+
+    //Funciones de Post y Delete
+    //Algo que no hay que confundir ambos son metodos POST a nivel de respuesta desde arriba la vista.
+    public function store(Request $request){
+        // Request --> /Products/ (POST)
+        $validated= $request->validate([
+        'nombre' => 'required|string|max:255',
+        'descripcion' => 'required|string|min:20|max:1000',
+        'precio' => 'required|integer|min:0|max:100',
+        'stock' => 'required|integer|min:0|max:100',
+        'categorie_id' => 'required|exists:categories,id'
+        ]);
+
+        Product::create($validated);
+        return redirect()->route('Products.index')->with('success','Prodcuto Creado!');
+    }
+
+    public function edit (Product $Product){
+        $categories = \App\Models\categories::all();
+        return view('Products.edit',compact('Product','categories'));
+    }
+    public function update(Request $request, Product $product){
+        $validando = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'required|string|min:20|max:1000',
+            'precio' => 'required|integer|min:0|max:100',
+            'stock' => 'required|integer|min:0|max:50',
+            'categorie_id' => 'required|exists:categories,id',
+        ]);
+        $product->update($validando);
+
+        return redirect()->route('Products.index')->with('success','Product Alterado exitosamente!');
+    }
+
+    public function destroy(Product $Product){
+        $Product -> delete();
+        return redirect()->route('Products.index')->with('success','Se eliminio correctamente');
+    }
+
+    
 }

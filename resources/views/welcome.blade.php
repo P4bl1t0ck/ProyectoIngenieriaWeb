@@ -12,9 +12,10 @@
     <p>Click the button below to view the list of ninjas and Products.</p>
     
         
-    <a href="/ninjas" class="btn">
+    <!--<a href="/ninjas" class="btn">
         Find All Ninjas!
-    </a>
+    </a>-->
+    <a href="/Categories"></a>
     <a href="/products" class="btn">
         Nuestros productos
     </a>

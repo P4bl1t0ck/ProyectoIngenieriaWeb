@@ -12,13 +12,17 @@ class Product extends Model
         'nombre',
         'descripcion',
         'precio',
-        'stock'
+        'stock',
+        'categorie_id', //i forgot.
+
         ];
 
     use HasFactory;
 
     public function categorie(){
-        return $this -> belongsTo(categories::class);
+        return $this -> belongsTo(categories::class, 'categorie_id'); 
+        //las vinetas finales eran nesecarias para hacer referencia que se hace la conexion
+        //con categorie_idd de la otra tabla
         //Conexion de Producto con categories
     }
 }

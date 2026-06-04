@@ -19,9 +19,10 @@ class categories extends Model
         automatically increase and plus by the time. */
     use HasFactory;
 
-    public function product(){
+    public function products(){
         //Y definimos bien la copnexion de la categiriua de muchos a la tabla de Product
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Product::class, 'categorie_id');
+        //Aqui la bineta nos ayuda a decir aqui, hey. si aqui es categorie_id es la referencia
     }
 
 }

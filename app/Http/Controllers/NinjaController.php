@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class NinjaController extends Controller
 {
 
-    public function index(){
+    public function index(){ //NinjaCon
         //route --> /ninjas/
         //$ninjas = Ninja::orderBy('created_at', 'desc')->paginate(10);
         //Con with, nosotros hacemos un fetch a Dojo y la incluimos al momento de hacer el llamos dengtro del orderBy
@@ -19,7 +19,7 @@ class NinjaController extends Controller
         return view('ninjas.index', ["ninjas" => $ninjas]);
     }   
 
-    public function show(Ninja $ninja){
+    public function show(Ninja $ninja){ //NinjaCon
         //route --> /ninjas/{$id}
         //$ninja = Ninja::findOrFail($id);
         //$ninja = Ninja::with('dojo')-> findOrFail($id);
@@ -28,7 +28,7 @@ class NinjaController extends Controller
         return view('ninjas.show', ["ninja"=>$ninja]);
     }   
 
-    public function create(){
+    public function create(){ //NinjaCon fetch Dojo.
         //rout --> /ninjas/create
         //render a create view (with web form) to users
         $dojos = Dojo::all();
@@ -38,7 +38,7 @@ class NinjaController extends Controller
 
     //The rest of the CRUD functions for our controller class for ninjas, i noticed, that 
     //maybe we are going to se more of thse functios more forward on the course, but until that it will rest here
-    public function store(Request $request) { //El request, es la variable conseguida de create.blade.p la
+    public function store(Request $request) { ////NinjaCon
       // --> /ninjas/ (POST)
       // hanlde POST request to store a new ninja record in table
       $validated = $request->validate([
@@ -53,7 +53,7 @@ class NinjaController extends Controller
         return redirect()->route('ninjas.index')->with('success', 'Ninja Created!');
     }
 
-    public function destroy(Ninja $ninja) {
+    public function destroy(Ninja $ninja) { //NinjaCon
       // --> /ninjas/{id} (DELETE)
         //$ninja=Ninja::findOrFail($id); 
         $ninja->delete();
@@ -62,4 +62,12 @@ class NinjaController extends Controller
 
     // edit() and update() for edit view and update requests
     // we won't be using these routes
+
+    public function edit(){
+
+    }
+    public function update(){
+
+    }
+
 }
