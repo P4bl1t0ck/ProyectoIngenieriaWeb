@@ -85,18 +85,22 @@ class RecommendationService
                 $contador[$idCategoria] = 1;
             }
         }
-
+        //Contador
+        //dd($contador);
+        
         arsort($contador);
 
         $categoriaRecomendada = array_key_first($contador);
-
+        //dd($categoriaRecomendada);
         $productosEnCarrito =
             $cart->items->pluck('product_id');
-
+        //dd($productosEnCarrito);
         $recomendados =
             Product::where('categorie_id',$categoriaRecomendada)->whereNotIn('id',$productosEnCarrito)->take(5)->get();
 
+        dd($recomendados);
         return $recomendados;
+        
     }
 }
 

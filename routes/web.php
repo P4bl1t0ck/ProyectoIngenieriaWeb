@@ -4,7 +4,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\NinjaController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoriesController;
+use App\Models\Cart;
 
+use App\Services\RecommendationService; 
 /*Product routes */
 // Rutas públicas
 
@@ -19,7 +21,18 @@ Route::get('/products/{Product}/edit', [ProductController::class, 'edit'])->name
 Route::put('/products/{Product}', [ProductController::class, 'update'])->name('Products.update');
 Route::delete('/products/{Product}', [ProductController::class, 'destroy'])->name('Products.destroy');
 
+//Service 
+Route::get('/test-recommendation', function(){
 
+    $cart = Cart::find(1);
+
+    $service = new RecommendationService();
+
+    $recomendados = $service->recommend($cart);
+
+    return $recomendados;
+
+});
 /*Cteagorie Routes */
 
 //Lista de categorias
