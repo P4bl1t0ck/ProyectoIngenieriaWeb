@@ -25,4 +25,11 @@ class Product extends Model
         //con categorie_idd de la otra tabla
         //Conexion de Producto con categories
     }
+
+
+    //Relacion de Producto con CartItems->>Cart-
+    public function cartItems(){
+        //Es la conexion de clases de Prodcut con CaertItems, sinedo    que esta que Cartitem puede llegar a temer muchos producotws
+        return $this -> hasMany(CartItem::class);
+    }
 }

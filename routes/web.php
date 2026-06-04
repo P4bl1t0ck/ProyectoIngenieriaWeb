@@ -23,22 +23,22 @@ Route::delete('/products/{Product}', [ProductController::class, 'destroy'])->nam
 /*Cteagorie Routes */
 
 //Lista de categorias
-Route::get('/Categories', [CategoriesController::class, 'index'])->name('Categories.index');
+Route::get('/categories', [CategoriesController::class, 'index'])->name('Categories.index');
 //Crear Categorias
-Route::get('/Categories/create', [CategoriesController::class, 'create'])->name('Categories.create');
+Route::get('/categories/create', [CategoriesController::class, 'create'])->name('Categories.create');
 //Detalle de una categoria, el Show
-Route::get('/Categories/{categorie}', [CategoriesController::class, 'show'])->name('Categories.show');
+Route::get('/categories/{categorie}', [CategoriesController::class, 'show'])->name('Categories.show');
 
 //Post store
-Route::post('/Categories', [CategoriesController::class, 'store'])->name('Categories.store');
+Route::post('/categories', [CategoriesController::class, 'store'])->name('Categories.store');
 
 //Editar Categoria 
-Route::get('/Categories/{categorie}/edit', [CategoriesController::class, 'edit'])->name('Categories.edit');
+Route::get('/categories/{categorie}/edit', [CategoriesController::class, 'edit'])->name('Categories.edit');
 //Actualizar Categoria
-Route::put('/Categories/{categorie}', [CategoriesController::class, 'update'])->name('Categories.update');
+Route::put('/categories/{categorie}', [CategoriesController::class, 'update'])->name('Categories.update');
 
 //Eliminiar categoria
-Route::delete('/Categories/{categorie}', [CategoriesController::class, 'destroy'])->name('Categories.destroy');
+Route::delete('/categories/{categorie}', [CategoriesController::class, 'destroy'])->name('Categories.destroy');
 
 
 Route::get('/', function () {
