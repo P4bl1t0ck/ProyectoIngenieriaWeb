@@ -20,15 +20,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/ninjas', [ NinjaController::class, 'index']);
+Route::get('/ninjas', [ NinjaController::class, 'index'])->name('ninjas.index');
 
 
-Route::get('/ninjas/create', [NinjaController::class, 'create']);
+Route::get('/ninjas/create', [NinjaController::class, 'create'])-> name('ninjas.create');
 
 //Round parameters
-Route::get('/ninjas/{id}', [NinjaController::class, 'show']);
+Route::get('/ninjas/{ninja}', [NinjaController::class, 'show']) -> name('ninja.show');
 
+/*Post method, usamos los principios RACI haciendo que dentro
+/ninja, asi que modificaremos la funcion de store dentro del controlador
+ddel NinjaController
+*/
+Route::post('/ninjas',[NinjaController::class, 'store'])->name('ninjas.store'); //Nmae of the routes
 
+//Delete Metho
+Route::delete('/ninjas/{ninja}', [NinjaController::class, 'destroy'])->name('ninjas.destroy');
 /*
 
   new resource -> Dojo(s)

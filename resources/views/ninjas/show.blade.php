@@ -19,7 +19,7 @@
 
     <!--La forma de <p><strong> en el html semantico, es como 
         un tipo de texto, subtitulo y descripcion en la vista.-->
-
+        {{-- Dojo  info, si otra forma de comentar mas facil en php FUCK YES --}}
     <div class="border-2 border-dashed bg-white px-4 pb-4 my-4 rounded">
     <h3>Dojo Information</h3>
     <p><strong>Dojo name:</strong> {{ $ninja->dojo->name }}</p>
@@ -27,4 +27,13 @@
     <p><strong>About the Dojo:</strong></p>
     <p>{{ $ninja->dojo->description }}</p>
   </div>
+
+  <form action="{{route('ninjas.destroy',$ninja->id)  }}" method="POST">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="btn my-4">
+        Delete Ninja
+    </button>
+  </form>
+
 </x-layout>

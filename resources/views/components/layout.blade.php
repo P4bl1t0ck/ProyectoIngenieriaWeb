@@ -12,6 +12,11 @@ this layout works like this vista (x) and on the other side os  vista(index.blad
 manera evitamo la repeticion de codigo innesacrio, dentro delas rutas y carpetas dentro
 del proyecto, y podemos crear distintas vistas segun lo que nesecitemos.-->
 <body>
+    {{-- This   --}}
+    @if(session('success'))
+        <div id="flash" class ="p-4 text-center bg-green-50 text-green-500 font-bold"></div>
+    @endif
+
     <header>
         <nav>
             <!--THIs is just a hook up to the routes made for Ninjas practice, we can Change ´em

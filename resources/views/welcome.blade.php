@@ -13,11 +13,9 @@
     
         
     <a href="/ninjas" class="btn">
-        <br>
         Find All Ninjas!
     </a>
     <a href="/products" class="btn">
-        <br>
         Nuestros productos
     </a>
     
