@@ -18,9 +18,7 @@ class CartFactory extends Factory
     public function definition(): array
     {
         return [
-            'estado' => fake()->randomElement([
-            'Activo',
-            'Finalizado']),
+            'estado' => fake()->randomElement(['activo', 'pendiente', 'completado']),
         ];
     }
 }

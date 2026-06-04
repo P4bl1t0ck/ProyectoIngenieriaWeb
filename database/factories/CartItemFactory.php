@@ -20,9 +20,14 @@ class CartItemFactory extends Factory
     public function definition(): array
     {
         return [
-            'cart_id' => Cart::inRandomOrder()->first()->id,
-            'product_id' => Product::inRandomOrder()->first()->id,
-            'cantidad' => fake()->numberBetween(20,40),
+            // Busca un carrito aleatorio o crea uno si no existe
+            'cart_id' => Cart::inRandomOrder()->first()->id ?? Cart::factory(),
+            
+            // Busca uno de tus productos reales de tecnología/música
+            'product_id' => Product::inRandomOrder()->first()->id ?? Product::factory(),
+            
+            // Una cantidad lógica para compras en línea
+            'cantidad' => fake()->numberBetween(1, 5),
         ];
     }
 }
