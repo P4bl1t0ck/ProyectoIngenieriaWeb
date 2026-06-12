@@ -1,43 +1,80 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\HomeTaskController;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\NinjaController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoriesController;
+use App\Models\Cart;
 
+use App\Services\RecommendationService; 
+/*Product routes */
 // Rutas públicas
+
+//Index, show 
+Route::get('/products',[ProductController::class, 'index']) -> name('Products.index');
+Route::get('/products/create',[ProductController::class, 'create']) -> name('Products.create');
+Route::get('/products/{Product}',[ProductController::class,'show']) -> name('Products.show');
+
+//Metodos de Leer, borrar, actualiza y guardar
+Route::post('/products', [ProductController::class,'store'])-> name('Products.store');
+Route::get('/products/{Product}/edit', [ProductController::class, 'edit'])->name('Products.edit');
+Route::put('/products/{Product}', [ProductController::class, 'update'])->name('Products.update');
+Route::delete('/products/{Product}', [ProductController::class, 'destroy'])->name('Products.destroy');
+
+//Service 
+Route::get('/test-recommendation', function(){
+
+    $cart = Cart::find(1);
+
+    $service = new RecommendationService();
+
+    $recomendados = $service->recommend($cart);
+
+    return $recomendados;
+
+});
+/*Cteagorie Routes */
+
+//Lista de categorias
+Route::get('/categories', [CategoriesController::class, 'index'])->name('Categories.index');
+//Crear Categorias
+Route::get('/categories/create', [CategoriesController::class, 'create'])->name('Categories.create');
+//Detalle de una categoria, el Show
+Route::get('/categories/{categorie}', [CategoriesController::class, 'show'])->name('Categories.show');
+
+//Post store
+Route::post('/categories', [CategoriesController::class, 'store'])->name('Categories.store');
+
+//Editar Categoria 
+Route::get('/categories/{categorie}/edit', [CategoriesController::class, 'edit'])->name('Categories.edit');
+//Actualizar Categoria
+Route::put('/categories/{categorie}', [CategoriesController::class, 'update'])->name('Categories.update');
+
+//Eliminiar categoria
+Route::delete('/categories/{categorie}', [CategoriesController::class, 'destroy'])->name('Categories.destroy');
+
+
 Route::get('/', function () {
     return view('welcome');
-})->name('home');
-
-// Rutas de autenticación (sin estar logeado)
-Route::middleware('guest')->group(function () {
-    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-    Route::post('/login', [AuthController::class, 'login'])->name('login.store');
-    
-    Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
-    Route::post('/register', [AuthController::class, 'register'])->name('register.store');
 });
 
-// Logout (solo si estás logeado)
-Route::post('/logout', [AuthController::class, 'logout'])
-    ->middleware('auth')
-    ->name('logout');
 
-// Rutas protegidas (solo usuarios logeados)
-Route::middleware('auth')->group(function () {
-    // CRUD de tareas - Lista, crear, editar, eliminar
-    Route::resource('tasks', HomeTaskController::class);
-    
-    // Ruta adicional para marcar como completada
-    Route::patch('tasks/{task}/toggle', [HomeTaskController::class, 'toggleComplete'])
-        ->name('tasks.toggle');
-});
+/*Ninja Course*/
+/*
+Route::get('/ninjas', [ NinjaController::class, 'index'])->name('ninjas.index');
 
-// Ruta de ninjas (ejemplo anterior)
-Route::get('/ninjas', function(){
-    $ninjas = [
-        ["name" => "mario","skill" => "Karate"],
-        ["name" => "luigi","skill" => "Karate"],
-        ["name" => "yoshi","skill" => "Karate"],
-    ];
-    return view('ninjas.index', ["Greeting" => "Hello Ninjas","ninjas" => $ninjas]);
-});
+
+Route::get('/ninjas/create', [NinjaController::class, 'create'])-> name('ninjas.create');
+
+//Round parameters
+Route::get('/ninjas/{ninja}', [NinjaController::class, 'show']) -> name('ninja.show');
+
+/*Post method, usamos los principios RACI haciendo que dentro
+/ninja, asi que modificaremos la funcion de store dentro del controlador
+ddel NinjaController
+
+Route::post('/ninjas',[NinjaController::class, 'store'])->name('ninjas.store'); //Nmae of the routes
+
+//Delete Metho
+Route::delete('/ninjas/{ninja}', [NinjaController::class, 'destroy'])->name('ninjas.destroy');
+*/

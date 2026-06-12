@@ -1,29 +1,27 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nija Network | Home</title>
-</head>
-<body>
-    <h2>Currentl Available Ninjas</h2>
-    <p>{{$Greeting}}</p>
+<x-layout> 
+    <!--This is crazy, you can actually delete a lot of code, and call
+    an view from the component folder, and we can used a custom component
+    of any type we wanted. -->
+            
+    <strong>Currently Available Ninjas</strong>
     <ul>
-        <li>
-            <a href = "">
-                {{ $ninjas[0]["name"] }}
-            </a>
-        </li>
-        <li>
-            <a href = "">
-                {{ $ninjas[1]["name"] }}
-            </a>
-        </li>
-        <li>
-            <a href = "">
-                {{ $ninjas[2]["name"] }}
-            </a>
-        </li>
+        <!--This a blade directory, that permit us to make a dinamic 
+        views, or render al ninja routh paths-->
+        @foreach($ninjas as $ninja)
+            <li>
+                <x-card href="/ninjas/{{ $ninja -> id }}" :highligth="$ninja['skill'] > 70">
+                     <div>
+                        <h3>{{$ninja -> name}}</h3>
+                        <!--This is how we get access to the ninja then dojo and name, by the relationship
+                        cool, but not dinamic, but when you want to work  with alot of dojos and nijas
+                    instead, in -->
+                        <p>{{$ninja->dojo->name}}</p>
+                    </div>
 
+                </x-card>
+            </li>
+        @endforeach
     </ul>
-</body>
-</html>
+    {{ $ninjas->links()}}
+
+</x-layout>
