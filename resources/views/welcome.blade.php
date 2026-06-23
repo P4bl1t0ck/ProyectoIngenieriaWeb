@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ninja Network</title>
+    <title>Core de Recomendaciones</title>
     @vite('resources/css/app.css')
       
 </head>
@@ -15,9 +15,14 @@
     <!--<a href="/ninjas" class="btn">
         Find All Ninjas!
     </a>-->
-    <a href="/Categories"></a>
+    <a href="/categories" class="btn">
+         Categorias
+        </a>
     <a href="/products" class="btn">
         Nuestros productos
+    </a>
+    <a href="/core">
+        Core
     </a>
     
 </body>

@@ -49,7 +49,7 @@ $item3 = $cart->items[2];
 
 */
 /*
-Chat me ayudo con la sustenciaon teorifccca
+Chat me ayudo con la sustenciaon teorica
  Controller
       ↓
 Service (Core)
@@ -73,10 +73,12 @@ class RecommendationService
         foreach ($cart->items as $item)
         {
             $categoria = $item->product->categorie;
+            //Relacion o un fetch
+            //dd($categoria);
 
             $idCategoria = $categoria->id;
-
-            if(isset($contador[$idCategoria]))
+            //dd($idCategoria);
+            if((isset($contador[$idCategoria])))
             {
                 $contador[$idCategoria]++;
             }
@@ -89,7 +91,6 @@ class RecommendationService
         //dd($contador);
         
         arsort($contador);
-
         $categoriaRecomendada = array_key_first($contador);
         //dd($categoriaRecomendada);
         $productosEnCarrito =
@@ -98,9 +99,16 @@ class RecommendationService
         $recomendados =
             Product::where('categorie_id',$categoriaRecomendada)->whereNotIn('id',$productosEnCarrito)->take(5)->get();
 
-        dd($recomendados);
+        //dd($recomendados);
         return $recomendados;
-        
+    }
+    
+    public function index(){
+        $valor = Cart::find(10);
+        $servicio = new RecommendationService();
+        $recomendados  = $servicio -> recommend($valor);
+
+        return view('Recomendation.index',compact('recomendados'));
     }
 }
 

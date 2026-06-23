@@ -78,4 +78,6 @@ class CategoriesController extends Controller
         return redirect()->route('Categories.index')->with('success', 'Category Deleted!');
     }
 
+    
+
 }

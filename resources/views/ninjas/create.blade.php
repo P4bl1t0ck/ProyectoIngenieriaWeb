@@ -14,7 +14,7 @@
     <!-- ninja Name -->
     <label for="name">Ninja Name:</label>
     <input 
-      type="text" 
+      type="text" descripcion
       id="name" 
       name="name" 
       value="{{ old('name') }}"
