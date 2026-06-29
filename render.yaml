@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: proyecto-ing-web
+    runtime: php
+    plan: free
+    buildCommand: |
+      composer install --no-dev --optimize-autoloader
+      php artisan config:cache
+      php artisan route:cache
+      php artisan view:cache
+    startCommand: |
+      # 1. Crear base de datos SQLite temporal en blanco
+      touch database/database.sqlite
+      # 2. Correr migraciones y ejecutar tus Seeders/Factories automáticamente
+      php artisan migrate --force --seed
+      # 3. Iniciar el servidor Apache
+      apache2-foreground
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_KEY
+        sync: false # Render te pedirá que pegues tu base64 en su página
+      - key: DB_CONNECTION
+        value: sqlite
+      - key: LOG_CHANNEL
+        value: stderr
+        

@@ -6,6 +6,8 @@ namespace App\Services;
 use App\Models\Cart;
 use App\Models\Product;
 
+//Traemos a nuestra interfaz de nuestro Repositorio
+use App\Repositories\ProductRepositoryInterface;
 /*
 use App\Models\CartItem;
 use App\Models\Product;
@@ -65,6 +67,13 @@ View
 
 class RecommendationService implements RecommendationStrategyInterface
 {
+    //Inyectamos el repositorio a traves del contrustor dentro de la clase
+    public function __construct(ProductRepositoryInterface $productRepository)
+    {
+        $this->productRepository = $productRepository;
+    }
+
+
     public function recommend(Cart $cart)
     {
         $contador = [];
