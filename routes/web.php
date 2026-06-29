@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoriesController;
 use App\Models\Cart;
 use App\Services\RecommendationService;
+use App\Http\Controllers\RecommendationServiceController;
 
 
 /*Product routes */
@@ -31,7 +32,8 @@ Route::get('/test-recommendation', function(){
     $recomendados = $service->recommend($cart);
     return $recomendados;});
 
-Route::get('/core',[RecommendationService::class, 'index'])->name('core.index');
+Route::get('/core',[RecommendationServiceController::class, 'index'])->name('core.index'); 
+//Ahi cumplimos con la parte de SRP, al llamar al controlador para que se encarge de el mostrar los resulados dentro de la aplicacion
 
 //Lista de categorias
 Route::get('/categories', [CategoriesController::class, 'index'])->name('Categories.index');

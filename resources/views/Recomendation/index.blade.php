@@ -1,9 +1,7 @@
 <x-layout>
     <strong>
-        Core flujo
+        Core flujo (Vista de Pruebas Arquitectónicas)
     </strong>
-    
-    
         <li>
             {{ $recomendados }}
         </li>

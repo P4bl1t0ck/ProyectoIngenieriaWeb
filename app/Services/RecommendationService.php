@@ -1,7 +1,5 @@
 <?php
 
-//Segun lo que recuerdo una forma de como llamar o conectar las clases
-//de packages de Models entre eel recomendador y sus Tablas.
 namespace App\Services;
 
 //Our Models
@@ -64,7 +62,8 @@ Controller
       ↓
 View 
  */
-class RecommendationService
+
+class RecommendationService implements RecommendationStrategyInterface
 {
     public function recommend(Cart $cart)
     {
@@ -103,22 +102,5 @@ class RecommendationService
         return $recomendados;
     }
     
-    public function index(){
-        $valor = Cart::find(10);
-        $servicio = new RecommendationService();
-        $recomendados  = $servicio -> recommend($valor);
-
-        return view('Recomendation.index',compact('recomendados'));
-    }
 }
 
-/*
-    1. Obtener un carrito.
-    2. Recorrer todos sus productos.
-    3. Obtener la categoría de cada producto.
-    4. Contar cuántas veces aparece cada categoría.
-    5. Encontrar la categoría más frecuente.
-    6. Buscar productos de esa categoría.
-    7. Excluir los productos ya presentes en el carrito.
-    8. Mostrar los productos restantes como recomendaciones.
-    */
