@@ -1,13 +1,13 @@
 <?php
 
-//Segun lo que recuerdo una forma de como llamar o conectar las clases
-//de packages de Models entre eel recomendador y sus Tablas.
 namespace App\Services;
 
 //Our Models
 use App\Models\Cart;
 use App\Models\Product;
 
+//Traemos a nuestra interfaz de nuestro Repositorio
+use App\Repositories\ProductRepositoryInterface;
 /*
 use App\Models\CartItem;
 use App\Models\Product;
@@ -49,7 +49,7 @@ $item3 = $cart->items[2];
 
 */
 /*
-Chat me ayudo con la sustenciaon teorifccca
+Chat me ayudo con la sustenciaon teorica
  Controller
       ↓
 Service (Core)
@@ -64,8 +64,16 @@ Controller
       ↓
 View 
  */
-class RecommendationService
+
+class RecommendationService implements RecommendationStrategyInterface
 {
+    //Inyectamos el repositorio a traves del contrustor dentro de la clase
+    public function __construct(ProductRepositoryInterface $productRepository)
+    {
+        $this->productRepository = $productRepository;
+    }
+
+
     public function recommend(Cart $cart)
     {
         $contador = [];
@@ -73,10 +81,12 @@ class RecommendationService
         foreach ($cart->items as $item)
         {
             $categoria = $item->product->categorie;
+            //Relacion o un fetch
+            //dd($categoria);
 
             $idCategoria = $categoria->id;
-
-            if(isset($contador[$idCategoria]))
+            //dd($idCategoria);
+            if((isset($contador[$idCategoria])))
             {
                 $contador[$idCategoria]++;
             }
@@ -89,7 +99,6 @@ class RecommendationService
         //dd($contador);
         
         arsort($contador);
-
         $categoriaRecomendada = array_key_first($contador);
         //dd($categoriaRecomendada);
         $productosEnCarrito =
@@ -98,19 +107,9 @@ class RecommendationService
         $recomendados =
             Product::where('categorie_id',$categoriaRecomendada)->whereNotIn('id',$productosEnCarrito)->take(5)->get();
 
-        dd($recomendados);
+        //dd($recomendados);
         return $recomendados;
-        
     }
+    
 }
 
-/*
-    1. Obtener un carrito.
-    2. Recorrer todos sus productos.
-    3. Obtener la categoría de cada producto.
-    4. Contar cuántas veces aparece cada categoría.
-    5. Encontrar la categoría más frecuente.
-    6. Buscar productos de esa categoría.
-    7. Excluir los productos ya presentes en el carrito.
-    8. Mostrar los productos restantes como recomendaciones.
-    */

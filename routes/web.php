@@ -5,8 +5,10 @@ use App\Http\Controllers\NinjaController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoriesController;
 use App\Models\Cart;
+use App\Services\RecommendationService;
+use App\Http\Controllers\RecommendationServiceController;
 
-use App\Services\RecommendationService; 
+
 /*Product routes */
 // Rutas públicas
 
@@ -21,19 +23,17 @@ Route::get('/products/{Product}/edit', [ProductController::class, 'edit'])->name
 Route::put('/products/{Product}', [ProductController::class, 'update'])->name('Products.update');
 Route::delete('/products/{Product}', [ProductController::class, 'destroy'])->name('Products.destroy');
 
-//Service 
+//Servicio forma de prueba
+
+
 Route::get('/test-recommendation', function(){
-
     $cart = Cart::find(1);
-
     $service = new RecommendationService();
-
     $recomendados = $service->recommend($cart);
+    return $recomendados;});
 
-    return $recomendados;
-
-});
-/*Cteagorie Routes */
+Route::get('/core',[RecommendationServiceController::class, 'index'])->name('core.index'); 
+//Ahi cumplimos con la parte de SRP, al llamar al controlador para que se encarge de el mostrar los resulados dentro de la aplicacion
 
 //Lista de categorias
 Route::get('/categories', [CategoriesController::class, 'index'])->name('Categories.index');
