@@ -11,6 +11,6 @@ class EloquentProductRepository implements ProductRepositoryInterface
         return Product::where('categorie_id', $categoryId)
             ->whereNotIn('id', $excludeProductIds)
             ->take($limit)
-            ->get();
+            ->get(); 
     }
 }
