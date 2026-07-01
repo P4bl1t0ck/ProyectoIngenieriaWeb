@@ -2,8 +2,11 @@
     <strong>
         Core flujo (Vista de Pruebas Arquitectónicas)
     </strong>
-        <li>
+        <!--This code is supposed to be a way of how to consumen a JSON-->
+        <pre><code>
             {{ $recomendados }}
-        </li>
+        </code>
+        </pre>
     
+        <!--li recomendadosli>-->
 </x-layout>

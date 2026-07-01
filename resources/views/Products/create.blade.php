@@ -4,7 +4,7 @@
     <div>Estos son todos los productos actuales</div>
     <ul>
         @foreach ($Products as $Products)
-            <li>
+            <li>resources/views/Products/create.blade.php
                 <x-card href="/products/{{ $Products -> id }}" :highligth="$Products['name']">
                     <h3>{{$Products -> name}}</h3>
                     <h3>{{$Products -> descripcion}}</h3>

@@ -53,11 +53,13 @@ Route::put('/categories/{categorie}', [CategoriesController::class, 'update'])->
 //Eliminiar categoria
 Route::delete('/categories/{categorie}', [CategoriesController::class, 'destroy'])->name('Categories.destroy');
 
+////Reemeber to make a Welcome page for the project, i had a issue with some things.
 
+/*
 Route::get('/', function () {
     return view('welcome');
 });
-
+*/
 
 /*Ninja Course*/
 /*
