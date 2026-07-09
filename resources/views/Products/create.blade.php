@@ -1,21 +1,66 @@
 <x-layout_p>
-    <strong>CREATE DE PRODUCTOS</strong>
+    <section>
+        <h2>Crear producto</h2>
 
-    <div>Estos son todos los productos actuales</div>
-    <ul>
-        @foreach ($Products as $Products)
-            <li>
-                <x-card href="/products/{{ $Products -> id }}" :highligth="$Products['name']">
-                    <h3>{{$Products -> name}}</h3>
-                    <h3>{{$Products -> descripcion}}</h3>
-                    <h3>{{$Products -> percio}}</h3>
-                    <h3>{{$Products -> stock}}</h3>
-                    <!--Un query un poco simplon, pero podemos mejor realizar el query natural, y
-                    mas dinamico desde dentro de el controlador de product -->
-                    <p>{{ $Products -> categorie -> name }}</p>
-                </x-card>
-            </li>
-        @endforeach
-    </ul>
+        <form method="POST" action="{{ route('Products.store') }}">
+            @csrf
+
+            <div>
+                <label for="nombre">Nombre</label>
+                <input id="nombre" name="nombre" type="text" value="{{ old('nombre') }}">
+                @error('nombre')
+                    <p>{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div>
+                <label for="descripcion">Descripción</label>
+                <textarea id="descripcion" name="descripcion" rows="4">{{ old('descripcion') }}</textarea>
+                @error('descripcion')
+                    <p>{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div>
+                <label for="precio">Precio</label>
+                <input id="precio" name="precio" type="number" min="0" value="{{ old('precio') }}">
+                @error('precio')
+                    <p>{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div>
+                <label for="stock">Stock</label>
+                <input id="stock" name="stock" type="number" min="0" value="{{ old('stock') }}">
+                @error('stock')
+                    <p>{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div>
+                <label for="categorie_id">Categoría</label>
+                <select id="categorie_id" name="categorie_id">
+                    <option value="">Selecciona una categoría</option>
+                    @foreach ($categories as $categorie)
+                        <option value="{{ $categorie->id }}" @selected(old('categorie_id') == $categorie->id)>
+                            {{ $categorie->nombre }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('categorie_id')
+                    <p>{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div>
+                <button type="submit">
+                    Guardar
+                </button>
+
+                <a href="{{ route('Products.index') }}">
+                    Cancelar
+                </a>
+            </div>
+        </form>
+    </section>
 </x-layout_p>
-
