@@ -4,9 +4,11 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\Product;
+
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
+    return Inertia::render('Welcome', [ 
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
@@ -23,5 +25,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/test-react', function () {
+    return Inertia::render('PruebaFiltro', [
+        //'mensaje' => 'Hola Pablo, este dato viene desde la base de datos de Laravel'
+        //Enviamos dentro de la ruta, con el nombre de esta variable, a todos los productos, con categoria y los mandamos a llamar.
+        'products' => Product::with('categorie')->get()
+    ]);
+});
+
 
 require __DIR__.'/auth.php';
