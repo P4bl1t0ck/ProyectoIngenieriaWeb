@@ -34,10 +34,9 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/test-react', function () {
     return Inertia::render('PruebaFiltro', [
-        'products' => Product::with('categorie')->get()
+        
     ]);
 });
-
 require __DIR__.'/auth.php';
 // Rutas públicas
 
