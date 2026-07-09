@@ -1,47 +1,68 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function PruebaFiltro() {
+    const [numero, setNumero] = useState("");
+    const [producto, setProducto] = useState(null);
+    const [mensaje, setMensaje] = useState("");
 
-    const [productos, setProductos] = useState([]);
-    const [buscar, setBuscar] = useState("");
+    function buscarProducto(evento) {
+        evento.preventDefault();
 
-    useEffect(() => {
+        setProducto(null);
+        setMensaje("Buscando producto...");
 
-        fetch("/api/products")
-            .then(res => res.json())
-            .then(data => setProductos(data));
+        fetch(`/api/products/${numero}`)
+            .then((respuesta) => {
+                if (!respuesta.ok) {
+                    throw new Error("No se encontro el producto.");
+                }
 
-    }, []);
-
-    const productosFiltrados = productos.filter(producto =>
-        producto.nombre.toLowerCase().includes(buscar.toLowerCase())
-    );
+                return respuesta.json();
+            })
+            .then((data) => {
+                setProducto(data);
+                setMensaje("");
+            })
+            .catch(() => {
+                setMensaje("No se encontro un producto con ese numero.");
+            });
+    }
 
     return (
-        <div style={{ padding: "20px" }}>
+        <div>
+            <h2>Buscar producto por numero</h2>
 
-            <h2>Filtro de Productos</h2>
+            <form onSubmit={buscarProducto}>
+                <label htmlFor="numero">Numero del producto</label>
+                <input
+                    id="numero"
+                    type="number"
+                    value={numero}
+                    onChange={(evento) => setNumero(evento.target.value)}
+                    placeholder="Ejemplo: 1"
+                />
 
-            <input
-                type="text"
-                placeholder="Buscar producto..."
-                value={buscar}
-                onChange={(e) => setBuscar(e.target.value)}
-            />
+                <button type="submit">
+                    Buscar en la API
+                </button>
+            </form>
 
-            <hr />
+            {mensaje && (
+                <p>{mensaje}</p>
+            )}
 
-            {
-                productosFiltrados.map(producto => (
+            {producto && (
+                <div>
+                    <h3>{producto.nombre}</h3>
+                    <p>{producto.descripcion}</p>
+                    <p>Precio: ${producto.precio}</p>
+                    <p>Stock: {producto.stock}</p>
 
-                    <div key={producto.id}>
-                        <h4>{producto.nombre}</h4>
-                        <p>${producto.precio}</p>
-                    </div>
-
-                ))
-            }
-
+                    {producto.categorie && (
+                        <p>Categoria: {producto.categorie.nombre}</p>
+                    )}
+                </div>
+            )}
         </div>
     );
 }

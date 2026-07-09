@@ -1,18 +1,18 @@
 <?php
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Controller;
+
+use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\NinjaController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\CategoriesController;
-use App\Models\Cart;
-use App\Services\RecommendationService;
-use App\Http\Controllers\RecommendationServiceController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Inertia\Inertia;
+use App\Http\Controllers\RecommendationServiceController;
+use App\Models\Cart;
 use App\Models\Product;
+use App\Services\RecommendationService;
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
-/*Product routes */
+/* Product routes */
 Route::get('/login-test', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -34,51 +34,60 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/test-react', function () {
     return Inertia::render('PruebaFiltro', [
-        
+
     ]);
 });
 require __DIR__.'/auth.php';
+//React isntalacion
 // Rutas públicas
 
-//Index, show 
-Route::get('/products',[ProductController::class, 'index']) -> name('Products.index');
-Route::get('/products/create',[ProductController::class, 'create']) -> name('Products.create');
-Route::get('/products/{Product}',[ProductController::class,'show']) -> name('Products.show');
+// Index, show para Products
+Route::get('/products', [ProductController::class, 'index'])->name('Products.index');
+Route::get('/products/create', [ProductController::class, 'create'])->name('Products.create');
+Route::get('/products/{Product}', [ProductController::class, 'show'])->name('Products.show');
 
-//Metodos de Leer, borrar, actualiza y guardar
-Route::post('/products', [ProductController::class,'store'])-> name('Products.store');
+// Metodos de Leer, borrar, actualiza y guardar para Products
+Route::post('/products', [ProductController::class, 'store'])->name('Products.store');
 Route::get('/products/{Product}/edit', [ProductController::class, 'edit'])->name('Products.edit');
 Route::put('/products/{Product}', [ProductController::class, 'update'])->name('Products.update');
-Route::delete('/products/{Product}', [ProductController::class, 'destroy'])->name('Products.destroy');
 
-//Servicio forma de prueba
+//Metodos para el carrito
+Route::post('/products/{Product}/cart', [ProductController::class, 'addToCart'])->name('Products.cart.add');
+Route::post('/cart/clear', [ProductController::class, 'clearCart'])->name('cart.clear');
+// Servicio forma de prueba
 
+Route::get('/test-recommendation', function () {
+    $cart = Cart::first();
+    $service = app(RecommendationService::class);
 
-Route::get('/test-recommendation', function(){
-    $cart = Cart::find(1);
-    $service = new RecommendationService();
+    if (! $cart) {
+        return collect();
+    }
+
     $recomendados = $service->recommend($cart);
-    return $recomendados;});
 
-Route::get('/core',[RecommendationServiceController::class, 'index'])->name('core.index'); 
-//Ahi cumplimos con la parte de SRP, al llamar al controlador para que se encarge de el mostrar los resulados dentro de la aplicacion
+    return $recomendados;
+});
 
-//Lista de categorias
+Route::get('/core', [RecommendationServiceController::class, 'index'])->name('core.index');
+// Ahi cumplimos con la parte de SRP, al llamar al controlador para que se encarge de el mostrar los resulados dentro de la aplicacion
+
+// Lista de categorias
 Route::get('/categories', [CategoriesController::class, 'index'])->name('Categories.index');
-//Crear Categorias
+// Crear Categorias
 Route::get('/categories/create', [CategoriesController::class, 'create'])->name('Categories.create');
-//Detalle de una categoria, el Show
+// Detalle de una categoria, el Show
 Route::get('/categories/{categorie}', [CategoriesController::class, 'show'])->name('Categories.show');
 
-//Post store
+// Post store
 Route::post('/categories', [CategoriesController::class, 'store'])->name('Categories.store');
 
-//Editar Categoria 
+// Editar Categoria
 Route::get('/categories/{categorie}/edit', [CategoriesController::class, 'edit'])->name('Categories.edit');
-//Actualizar Categoria
+// Actualizar Categoria
 Route::put('/categories/{categorie}', [CategoriesController::class, 'update'])->name('Categories.update');
 
-//Eliminiar categoria
+// Eliminiar categoria
 Route::delete('/categories/{categorie}', [CategoriesController::class, 'destroy'])->name('Categories.destroy');
 
 /*
@@ -87,7 +96,7 @@ Route::get('/', function () {
 });
 */
 
-/*Ninja Course*/
+/* Ninja Course */
 /*
 Route::get('/ninjas', [ NinjaController::class, 'index'])->name('ninjas.index');
 
