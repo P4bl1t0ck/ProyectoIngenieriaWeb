@@ -28,7 +28,7 @@
             <li><a href="/api/categories">GET /api/categories - Categorias</a></li>
         </ul>
 
-        <h2>Otros</h2>
+        <!-- <h2>Otros</h2>
         <ul>
             <li><a href="/test-recommendation">GET /test-recommendation - Recomendacion de prueba</a></li>
             <li><a href="/core">GET /core - Core recomendaciones</a></li>
@@ -36,7 +36,8 @@
             <li><a href="/categories/create">GET /categories/create - Crear categoria</a></li>
             <li><a href="/categories/1">GET /categories/1 - Ver categoria 1</a></li>
             <li><a href="/categories/1/edit">GET /categories/1/edit - Editar categoria 1</a></li>
-        </ul>
+        </ul>-->
+       
 
         <h2>Cuenta</h2>
         <ul>

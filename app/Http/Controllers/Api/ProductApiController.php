@@ -21,7 +21,7 @@ class ProductApiController extends Controller
         }
         return response()->json($consulta->get());
         //Al final devuelve la respues ede la consulta en json.
-    }x
+    }
     public function show(Product $product){ //Especifica el buscador.
         return response()->json($product->load('categorie'));
         //Esta funcion retorna el producto seleccionado a json y lo carga

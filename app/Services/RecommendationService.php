@@ -7,62 +7,6 @@ use App\Models\Cart;
 // Traemos a nuestra interfaz de nuestro Repositorio
 use App\Repositories\ProductRepositoryInterface;
 
-/*
-use App\Models\CartItem;
-use App\Models\Product;
-use App\Models\categories;
-*/
-// Aunque deberiamos trabjar mas con sus controladdores
-
-/*Un core informatico: Es la logica principal que convierte
-Las entradas despues de procesarlas en salidas
-como una fucncion matematica esta busca ser la f(x) = y
-x, son datos reales, f nuestro proceso y la salida.*/
-
-/*Para que el sistema sea inteligente osea cumplamos con f
-primero debemos de hacer que pase, ocmo nuestro sistema se
-basa del patron de diseño de MVC Model-Vista-Controlador,
-crearemos un componente mas, que sera nuestra funcion.
-el flujo original dentro de MVC es que el usuaroio interactura
-con el controlador cualquiera, este se comunicara con el modelo
-basandose de el para pasar tomarlos, pasarlos a la vista y despues reponder
-finalmente a  la vista.*/
-
-// Controller -> Model -> View
-
-// f, estara despues de Controller, cuando nuestro usuario interactue con el controlador, que funciona en este caso
-// como la entrada de nuestro sistema, osea x, f sera nuestro recomendador el modelo le dara forma, y la vista lo mostrara
-// Controller -> (f ) -> Model -> View
-// En matematicas podria funcionar como un transformador, o una operacion de inersa en matrices o tensores
-// Pero en este sera nuestra funcion que segun basado de x, f, procesara los datos y y los expulsara por la vista.
-
-/*foreach($cart->items as $item)
-{
-    ...
-}
- =
-$item1 = $cart->items[0];
-$item2 = $cart->items[1];
-$item3 = $cart->items[2];
-
-*/
-/*
-Chat me ayudo con la sustenciaon teorica
- Controller
-      ↓
-Service (Core)
-      ↓
-Models
-      ↓
-Database
-      ↓
-Service
-      ↓
-Controller
-      ↓
-View
- */
-
 class RecommendationService implements RecommendationStrategyInterface
 {
     protected ProductRepositoryInterface $productRepository;
