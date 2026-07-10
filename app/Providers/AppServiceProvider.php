@@ -9,6 +9,8 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+
+    //Aqui es la inyecion de dependecias / forma de laravel  
     /**
      * Register any application services.
      */

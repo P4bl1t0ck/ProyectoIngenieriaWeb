@@ -10,4 +10,6 @@ interface ProductRepositoryInterface
      * Y a la vez cumplimos con el patron de diseño de OCP
      */
     public function getRecommendationsByCategory($categoryId, $excludeProductIds, $limit = 5);
+    
+    //Repository Pattern
 }
