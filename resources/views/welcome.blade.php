@@ -22,7 +22,6 @@
 
         <h2>APIs</h2>
         <ul>
-            <li><a href="/api/user">GET /api/user - Usuario autenticado</a></li>
             <li><a href="/api/products">GET /api/products - Productos</a></li>
             <li><a href="/api/products/1">GET /api/products/1 - Producto 1</a></li>
             <li><a href="/api/categories">GET /api/categories - Categorias</a></li>
