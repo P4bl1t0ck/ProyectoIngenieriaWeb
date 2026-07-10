@@ -12,6 +12,10 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
 /* Product routes */
 Route::get('/login-test', function () {
     return Inertia::render('Welcome', [
@@ -89,12 +93,6 @@ Route::put('/categories/{categorie}', [CategoriesController::class, 'update'])->
 
 // Eliminiar categoria
 Route::delete('/categories/{categorie}', [CategoriesController::class, 'destroy'])->name('Categories.destroy');
-
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
-*/
 
 /* Ninja Course */
 /*
